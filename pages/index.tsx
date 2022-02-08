@@ -3,13 +3,21 @@ import { FormEvent, useState } from 'react';
 import { Image, Flex, Link, Button, Text } from '@chakra-ui/core'
 import Input from '../components/Input'
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function Home() {
   const [email, setEmail] = useState('');
 
   function handleSignUpToNewsletter(event: FormEvent){
     event.preventDefault()
-    axios.post('/api/subscribe', { email })
+    axios.post('/api/subscribe', {email}).then(response => {
+      if(response.status === 201){
+        console.log('yes')
+        return toast.success('Cadastro realizado com sucesso')
+      }
+
+      toast.error('Parece que algo deu errado... Estamos trabalhando nisso')
+    })
   }
   return (
     <Flex
@@ -18,6 +26,7 @@ export default function Home() {
       justifyContent="center"
       alignItems="center"
     >
+      <Toaster />
       <Flex
         as="form"
         onSubmit={handleSignUpToNewsletter}
@@ -30,10 +39,13 @@ export default function Home() {
         width="100%" 
         maxW="400px"
       >
-        <Image marginBottom={8} src="/rocketseat.svg" alt="Rocketseat" />
+        <Image marginBottom={5} width="100%"  src="/Octocat.png" alt="Simbolo do github, um gato com corpo de polvo (conhecido como octocat)" />
   
         <Text textAlign="center" fontSize="sm" color="gray.400" marginBottom={2}>
-          Assine a newsletter da Rocketseat e receba os melhores conteúdos sobre programação!
+          Obrigado por visitar meu repositório! 
+          Este formulário irá cadastrar seu e-mail em um banco cloud mongodb.
+          Este formulário foi produzido para fundamentos academicos, mas tudo 
+          está funcionando perfeitamente!
         </Text>
   
         <Input
