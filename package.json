@@ -14,11 +14,14 @@
     "@vercel/node": "^1.12.1",
     "axios": "^0.25.0",
     "emotion-theming": "^10.0.27",
+    "mongodb": "^4.3.1",
     "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "@types/mongodb": "^4.0.7",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^14.6.0",
     "@types/react": "^16.9.46",
     "typescript": "^3.9.7"
